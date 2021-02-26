@@ -1,44 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import "../index.css";
-
 import api from "../api";
-import cat from "../assets/cat.png";
 
-export const Leagues = () => {
-  const [leagues, setLeagues] = useState([
-    {
-      "Nombre De La Liga": "Liga sin nombre",
-      "Identificador": "xxxx-xxxx-xxxx",
-      "Logo de la Liga": cat,
-    },
-  ]);
+export const AllPlayers = () => {
 
-  const leaguesArr = async () => {
-    const response = await api.get("/leagues");
-    setLeagues(response.data);
-    console.log(leagues);
+  const [allPlayers, setAllPlayers] = useState([]);
+
+  const playersArr = async () => {
+    const response = await api.get("/players");
+    setAllPlayers(response.data);
   };
 
   useEffect(() => {
-    leaguesArr();
-  }, [setLeagues]);
+    playersArr();
+  }, [setAllPlayers]);
 
   return (
     <div>
-      <h2>Leagues</h2>
+      <h2>All Players</h2>
       <hr />
       <ul>
-        {leagues.map((liga) => {
+        {allPlayers.map((player) => {
           return (
             <li>
-              {liga["Nombre De La Liga"]}
+              {player["Nombre del Jugador"]}
               <img
-                src={liga["Logo de la Liga"]}
+                src={player["Avatar"]}
                 width="50"
                 height="50"
-                alt="imagen de la liga"
+                alt="imagen del equipo"
               ></img>
               <Link className="link_button" to="/teams">
                 Details
