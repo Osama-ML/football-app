@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "../index.css";
 
 import api from "../api";
 import cat from "../assets/cat.png";
-import { Teams } from "./Teams";
 
 export const Leagues = () => {
-
-  const history = useHistory();
-
-  const routeChange = (liga) => {
-    Teams(liga);
-    let newPath = "teams";
-    history.push({
-      pathname: newPath,
-      state: liga
-    });
-  };
 
   const [leagues, setLeagues] = useState([
     {

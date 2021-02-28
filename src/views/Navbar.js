@@ -9,6 +9,7 @@ import { AllPlayers } from "./AllPlayers";
 import { Landing } from "./Landing";
 import { Teams } from "./Teams";
 import { Players } from "./Players";
+import { Player } from "./Player";
 
 export const Navbar = () => {
   return (
@@ -71,6 +72,7 @@ export const Navbar = () => {
       <Route path="/all-players" component={AllPlayers} />
       <Route path="/teams" component={Teams} />
       <Route path="/players" component={Players} />
+      <Route path="/player" component={Player} />
     </Router>
   );
 };

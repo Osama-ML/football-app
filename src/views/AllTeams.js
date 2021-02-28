@@ -29,7 +29,13 @@ export const AllTeams = () => {
                 height="50"
                 alt="imagen del equipo"
               ></img>
-              <Link className="link_button" to="/teams">
+              <Link
+                className="link_button"
+                to={{
+                  pathname: "/players",
+                  state: team
+                }}
+              >
                 Details
               </Link>
               <Link className="link_button" to="#">
