@@ -28,7 +28,7 @@ export const AllPlayers = () => {
                 src={player["Avatar"]}
                 width="50"
                 height="50"
-                alt="imagen del equipo"
+                alt="imagen del jugador"
               ></img>
               <Link className="link_button" to="/teams">
                 Details

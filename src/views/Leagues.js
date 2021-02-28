@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import "../index.css";
 
 import api from "../api";
 import cat from "../assets/cat.png";
+import { Teams } from "./Teams";
 
 export const Leagues = () => {
+
+  const history = useHistory();
+
+  const routeChange = (liga) => {
+    Teams(liga);
+    let newPath = "teams";
+    history.push({
+      pathname: newPath,
+      state: liga
+    });
+  };
+
   const [leagues, setLeagues] = useState([
     {
       "Nombre De La Liga": "Liga sin nombre",
@@ -18,7 +31,6 @@ export const Leagues = () => {
   const leaguesArr = async () => {
     const response = await api.get("/leagues");
     setLeagues(response.data);
-    console.log(leagues);
   };
 
   useEffect(() => {
@@ -40,12 +52,18 @@ export const Leagues = () => {
                 height="50"
                 alt="imagen de la liga"
               ></img>
-              <Link className="link_button" to="/teams">
+              <Link
+                className="link_button"
+                to={{
+                  pathname: "/teams",
+                  state: liga
+                }}
+              >
                 Details
               </Link>
-              <Link className="link_button" to="#">
+              <button className="link_button" to="#">
                 Edit
-              </Link>
+              </button>
               <button className="link_button">Delete</button>
             </li>
           );
