@@ -7,13 +7,21 @@ export const AllPlayers = () => {
   const [allPlayers, setAllPlayers] = useState([]);
 
   const playersArr = async () => {
-    const response = await api.get("/players");
-    setAllPlayers(response.data);
+    await api.get("/players")
+    .then(response => setAllPlayers(response.data))
+    .catch(err => console.log(err))
   };
 
+  const handleDelete = async (id) => {
+    await api.delete(`/players/${id}`)
+    .then(() => setAllPlayers(allPlayers.filter(player => player.id !== id)))
+    .catch(err => console.log(err))
+  }
+  
   useEffect(() => {
     playersArr();
   }, [setAllPlayers]);
+  
 
   return (
     <div>
@@ -44,7 +52,8 @@ export const AllPlayers = () => {
               <Link className="link_button" to="#">
                 Edit
               </Link>
-              <button className="link_button">Delete</button>
+              <button className="link_button"
+              onClick={() => {handleDelete(player["id"])}}>Delete</button>
             </li>
           );
         })}

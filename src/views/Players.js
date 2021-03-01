@@ -25,13 +25,15 @@ export const Players = (props) => {
 
   return (
     <div>
-      <h2>Players of {team["Nombre del equipo"]}</h2>
+      <h2>
+        <img src={team["Logo del Equipo"]} width="100" height="100"></img>
+        {team["Nombre del equipo"]}'s players
+      </h2>
+      <hr/>
       <ul>
         {players.map((player) => {
           return (
-            <li
-            key={player["id"]}
-            >
+            <li key={player["id"]}>
               {player["Nombre del Jugador"]}
               <img
                 src={player["Avatar"]}
