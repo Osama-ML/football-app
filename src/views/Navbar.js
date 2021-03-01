@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 import "../index.css";
 
 import { Leagues } from "./Leagues";
@@ -12,6 +13,7 @@ import { Players } from "./Players";
 import { Player } from "./Player";
 
 export const Navbar = () => {
+
   return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">

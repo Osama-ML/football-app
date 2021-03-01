@@ -21,7 +21,9 @@ export const AllTeams = () => {
       <ul>
         {allTeams.map((team) => {
           return (
-            <li>
+            <li
+            key={team["id"]}
+            >
               {team["Nombre del equipo"]}
               <img
                 src={team["Logo del Equipo"]}

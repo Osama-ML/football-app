@@ -22,7 +22,9 @@ export const AllPlayers = () => {
       <ul>
         {allPlayers.map((player) => {
           return (
-            <li>
+            <li
+            key={player["id"]}
+            >
               {player["Nombre del Jugador"]}
               <img
                 src={player["Avatar"]}

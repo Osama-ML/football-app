@@ -25,11 +25,13 @@ export const Teams = props => {
 
   return (
     <div>
-      <h2>Teams of {liga["Nombre De La Liga"]}</h2>
+      <h2>Teams of {liga["Nombre De La Liga"]} League</h2>
       <ul>
         {teams.map((team) => {
           return (
-            <li>
+            <li
+            key={team["id"]}
+            >
               {team["Nombre del equipo"]}
               <img
                 src={team["Logo del Equipo"]}

@@ -29,7 +29,9 @@ export const Players = (props) => {
       <ul>
         {players.map((player) => {
           return (
-            <li>
+            <li
+            key={player["id"]}
+            >
               {player["Nombre del Jugador"]}
               <img
                 src={player["Avatar"]}
@@ -38,7 +40,7 @@ export const Players = (props) => {
                 alt="imagen de la liga"
               ></img>
               <Link
-                className="link_button"
+                className="btn btn-primary"
                 to={{
                   pathname: "/player",
                   state: player,

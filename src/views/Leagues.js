@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+
 import "../index.css";
 
 import api from "../api";
@@ -27,12 +28,12 @@ export const Leagues = () => {
 
   return (
     <div>
-      <h2>Leagues</h2>
+      <h2>All Leagues</h2>
       <hr />
       <ul>
         {leagues.map((liga) => {
           return (
-            <li>
+            <li key={liga["Identificador"]}>
               {liga["Nombre De La Liga"]}
               <img
                 src={liga["Logo de la Liga"]}
