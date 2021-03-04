@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+
 import "../index.css";
 
 import { Leagues } from "./Leagues";
@@ -11,6 +12,8 @@ import { Landing } from "./Landing";
 import { Teams } from "./Teams";
 import { Players } from "./Players";
 import { Player } from "./Player";
+import { EditPlayer } from "./EditView";
+import { AddPlayer } from "./AddPlayer";
 
 export const Navbar = () => {
 
@@ -75,6 +78,8 @@ export const Navbar = () => {
       <Route path="/teams" component={Teams} />
       <Route path="/players" component={Players} />
       <Route path="/player" component={Player} />
+      <Route path="/edit-player" component={EditPlayer} />
+      <Route path="/add-player" component={AddPlayer} />
     </Router>
   );
 };

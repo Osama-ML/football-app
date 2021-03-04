@@ -29,7 +29,7 @@ export const Players = (props) => {
         <img src={team["Logo del Equipo"]} width="100" height="100"></img>
         {team["Nombre del equipo"]}'s players
       </h2>
-      <hr/>
+      <hr />
       <ul>
         {players.map((player) => {
           return (
@@ -50,9 +50,12 @@ export const Players = (props) => {
               >
                 Details
               </Link>
-              <button className="link_button" to="#">
+              <Link
+                className="link_button"
+                to={{ pathname: "/edit-player", state: player }}
+              >
                 Edit
-              </button>
+              </Link>
               <button className="link_button">Delete</button>
             </li>
           );
