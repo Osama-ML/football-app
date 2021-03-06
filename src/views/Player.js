@@ -4,21 +4,19 @@ import api from "../api";
 export const Player = (props) => {
   const player = (props.location && props.location.state) || {};
 
-  const [team, setAllTeam] = useState({});
-
-  const teamArr = async () => {
-    await api
-      .get("/teams")
-      .then((response) =>
-        setAllTeam(
-          response.data.filter((team) => team["id"] === player["teamId"])
-        )
-      );
+  const teamArr =  () => {
+     api
+      .get(`/teams/${player["teamId"]}`)
+      .then((response) => setAllTeam(response.data));
   };
+
+  const [team, setAllTeam] = useState({});
 
   useEffect(() => {
     teamArr();
   }, [setAllTeam]);
+
+  console.log(player["teamId"], team["id"]);
 
   return (
     <div>
@@ -27,12 +25,12 @@ export const Player = (props) => {
         src={player["Avatar"]}
         width="250"
         height="250"
-        alt="imagen de la liga"
+        alt="imagen del jugador"
       ></img>
 
-      <h3>Team: {team[0]["Nombre del equipo"]}</h3>
+      <h3>Team: {team["Nombre del equipo"]}</h3>
       <img
-        src={team[0]["Logo del Equipo"]}
+        src={team["Logo del Equipo"]}
         width="150"
         height="150"
         alt="imagen del equipo"

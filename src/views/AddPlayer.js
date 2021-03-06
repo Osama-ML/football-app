@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
+
 import api from "../api";
 
 export const AddPlayer = (props) => {
+  const history = useHistory();
+
   const [player, setPlayer] = useState({
     "Nombre del Jugador": "",
-    id: "",
+    id: new Date().getTime(),
     Avatar: "",
     teamId: "",
   });
@@ -20,7 +24,7 @@ export const AddPlayer = (props) => {
     teamsArr();
   }, [setAllTeams]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     if (
       player["Nombre del Jugador"].trim().length > 2 &&
@@ -28,7 +32,10 @@ export const AddPlayer = (props) => {
     ) {
       api
         .post("/players", player)
-        .then(() => console.log(player))
+        .then(() => {
+          console.log(player);
+          history.push("/player", player);
+        })
         .catch((e) => console.log(e));
     }
   };
@@ -64,12 +71,12 @@ export const AddPlayer = (props) => {
         <select
           className="form-select form-select-sm mb-3"
           aria-label=".form-select-sm example"
-          onChange={e => setPlayer({ ...player, "teamId": e.target.value })}
+          onChange={(e) => setPlayer({ ...player, teamId: e.target.value })}
         >
           <option defaultValue>Select the team</option>
           {allTeams.map((team) => {
             return (
-              <option  value={team["id"]}>{team['Nombre del equipo']}</option>
+              <option value={team["id"]}>{team["Nombre del equipo"]}</option>
             );
           })}
         </select>
