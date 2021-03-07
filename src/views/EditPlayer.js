@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
 import api from "../api";
 
-export const AddPlayer = () => {
+export const EditPlayer = (props) => {
+  const playerToEdit = (props.location && props.location.state) || {};
+  
   const history = useHistory();
 
-  const [player, setPlayer] = useState({
-    "Nombre del Jugador": "",
-    id: new Date().getTime(),
-    Avatar: "",
-    teamId: "",
-  });
+  const [playerTeam, setPlayerTeam] = useState({});
+
+  const getPlayerTeam = async () => {
+    await api
+      .get(`/teams/${playerToEdit["teamId"]}`)
+      .then((response) => setPlayerTeam(response.data))
+      .catch((err) => console.log(err));
+  };
+
+  const [player, setPlayer] = useState(playerToEdit);
 
   const [allTeams, setAllTeams] = useState([]);
 
@@ -21,6 +27,7 @@ export const AddPlayer = () => {
   };
 
   useEffect(() => {
+    getPlayerTeam();
     teamsArr();
   }, [setAllTeams]);
 
@@ -31,7 +38,7 @@ export const AddPlayer = () => {
       player["Avatar"].trim().length > 2
     ) {
       api
-        .post("/players", player)
+        .put(`/players/${player["id"]}`, player)
         .then(() => {
           console.log(player);
           history.push("/player", player);
@@ -41,8 +48,16 @@ export const AddPlayer = () => {
   };
 
   return (
-    <>
-      <h1>AddPlayer</h1>
+    <div>
+      <h1>
+        Edit player "{player["Nombre del Jugador"]}"
+        <img
+          src={player["Avatar"]}
+          width="150"
+          height="150"
+          alt="imagen del jugador"
+        ></img>
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Image URL</label>
@@ -73,15 +88,22 @@ export const AddPlayer = () => {
           aria-label=".form-select-sm example"
           onChange={(e) => setPlayer({ ...player, teamId: e.target.value })}
         >
-          <option defaultValue>Select the team</option>
           {allTeams.map((team) => {
-            return (
-              <option value={team["id"]}>{team["Nombre del equipo"]}</option>
-            );
+            if (team["id"] === playerTeam["id"]) {
+              return (
+                <option value={team["id"]} selected>
+                  {team["Nombre del equipo"]}
+                </option>
+              );
+            } else {
+              return (
+                <option value={team["id"]}>{team["Nombre del equipo"]}</option>
+              );
+            }
           })}
         </select>
-        <button type="submit">Add new player</button>
+        <button type="submit">Edit player</button>
       </form>
-    </>
+    </div>
   );
 };

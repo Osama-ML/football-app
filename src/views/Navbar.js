@@ -12,7 +12,7 @@ import { Landing } from "./Landing";
 import { Teams } from "./Teams";
 import { Players } from "./Players";
 import { Player } from "./Player";
-import { EditPlayer } from "./EditView";
+import { EditPlayer } from "./EditPlayer";
 import { AddPlayer } from "./AddPlayer";
 
 export const Navbar = () => {
