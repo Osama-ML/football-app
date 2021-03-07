@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 import api from "../api";
 
 export const Player = (props) => {
+  const history = useHistory();
+
   const player = (props.location && props.location.state) || {};
 
-  const teamArr =  () => {
-     api
+  const teamArr = () => {
+    api
       .get(`/teams/${player["teamId"]}`)
       .then((response) => setAllTeam(response.data));
   };
 
   const [team, setAllTeam] = useState({});
 
+  const handleDelete = async (id) => {
+    await api
+      .delete(`/players/${id}`)
+      .then(() => history.push('/all-players'))
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     teamArr();
   }, [setAllTeam]);
-
-  console.log(player["teamId"], team["id"]);
 
   return (
     <div>
@@ -35,6 +44,15 @@ export const Player = (props) => {
         height="150"
         alt="imagen del equipo"
       ></img>
+      <Link to={{ pathname: "/edit-player", state: player }}>Edit player</Link>
+      <button
+        className="link_button"
+        onClick={() => {
+          handleDelete(player["id"]);
+        }}
+      >
+        Delete
+      </button>
     </div>
   );
 };

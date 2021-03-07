@@ -89,6 +89,8 @@ export const EditPlayer = (props) => {
           onChange={(e) => setPlayer({ ...player, teamId: e.target.value })}
         >
           {allTeams.map((team) => {
+
+            if(playerTeam["id"] === "undefined") return(<option selected>Select the team</option>)
             if (team["id"] === playerTeam["id"]) {
               return (
                 <option value={team["id"]} selected>

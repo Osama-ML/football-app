@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 
-
-export const Teams = props => {
-
+export const Teams = (props) => {
   const liga = (props.location && props.location.state) || {};
 
   const [teams, setTeams] = useState([
     {
       "Nombre del Equipo": "Liga sin nombre",
-      "id": "xxxx-xxxx-xxxx",
+      id: "xxxx-xxxx-xxxx",
     },
   ]);
-  
+
   const teamsArr = async () => {
     const response = await api.get("/teams");
-    setTeams((response.data).filter(team => team["Liga"] === liga["Identificador"]));
+    setTeams(
+      response.data.filter((team) => team["Liga"] === liga["Identificador"])
+    );
   };
 
   useEffect(() => {
@@ -25,13 +25,19 @@ export const Teams = props => {
 
   return (
     <div>
-      <h2>Teams of {liga["Nombre De La Liga"]} League</h2>
+      <h2>
+        Teams of {liga["Nombre De La Liga"]} League ({teams.length})
+        <img
+          src={liga["Logo de la Liga"]}
+          width="150"
+          height="150"
+          alt="imagen de la liga"
+        ></img>
+      </h2>
       <ul>
         {teams.map((team) => {
           return (
-            <li
-            key={team["id"]}
-            >
+            <li key={team["id"]}>
               {team["Nombre del equipo"]}
               <img
                 src={team["Logo del Equipo"]}
@@ -43,7 +49,7 @@ export const Teams = props => {
                 className="link_button"
                 to={{
                   pathname: "/players",
-                  state: team
+                  state: team,
                 }}
               >
                 Details

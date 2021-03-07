@@ -16,7 +16,7 @@ export const AllTeams = () => {
 
   return (
     <div>
-      <h2>All teams</h2>
+      <h2>All teams ({allTeams.length})</h2>
       <hr />
       <ul>
         {allTeams.map((team) => {

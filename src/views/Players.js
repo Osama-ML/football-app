@@ -27,7 +27,7 @@ export const Players = (props) => {
     <div>
       <h2>
         <img src={team["Logo del Equipo"]} width="100" height="100"></img>
-        {team["Nombre del equipo"]}'s players
+        {team["Nombre del equipo"]}'s players ({players.length})
       </h2>
       <hr />
       <ul>

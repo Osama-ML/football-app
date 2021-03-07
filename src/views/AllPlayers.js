@@ -27,13 +27,13 @@ export const AllPlayers = () => {
 
   return (
     <div>
-      <h2>All Players</h2>
+      <h2>All Players ({allPlayers.length})</h2>
       <hr />
       <Link className="btn btn-primary" to="/add-player">
         New Player
       </Link>
       <ul>
-        {allPlayers.map((player) => {
+        {allPlayers.reverse().map((player) => {
           return (
             <li key={player["id"]}>
               {player["Nombre del Jugador"]}
