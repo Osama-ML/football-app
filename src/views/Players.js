@@ -30,6 +30,10 @@ export const Players = (props) => {
         {team["Nombre del equipo"]}'s players ({players.length})
       </h2>
       <hr />
+      <Link className="btn btn-primary" 
+      to={{ pathname: "/add-player", state: team }}>
+        New Player
+      </Link>
       <ul>
         {players.map((player) => {
           return (

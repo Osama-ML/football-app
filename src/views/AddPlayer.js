@@ -3,7 +3,9 @@ import { useHistory } from "react-router";
 
 import api from "../api";
 
-export const AddPlayer = () => {
+export const AddPlayer = (props) => {
+  const defaultTeam = (props.location && props.location.state) || {};
+
   const history = useHistory();
 
   const [player, setPlayer] = useState({
@@ -73,10 +75,24 @@ export const AddPlayer = () => {
           aria-label=".form-select-sm example"
           onChange={(e) => setPlayer({ ...player, teamId: e.target.value })}
         >
-          <option defaultValue>Select the team</option>
+          <option selected>Select team</option>
           {allTeams.map((team) => {
+            // if (defaultTeam === team) {
+            //   return (
+            //     <option
+            //       key={defaultTeam["id"]}
+            //       value={defaultTeam["id"]}
+            //       selected
+            //       defaultValue
+            //     >
+            //       {defaultTeam["Nombre del equipo"]}
+            //     </option>
+            //   );
+            // }
             return (
-              <option value={team["id"]}>{team["Nombre del equipo"]}</option>
+              <option key={team["id"]} value={team["id"]}>
+                {team["Nombre del equipo"]}
+              </option>
             );
           })}
         </select>

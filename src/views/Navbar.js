@@ -14,6 +14,8 @@ import { Players } from "./Players";
 import { Player } from "./Player";
 import { EditPlayer } from "./EditPlayer";
 import { AddPlayer } from "./AddPlayer";
+import { AddTeam } from "./AddTeam";
+import { EditTeam } from "./EditTeam";
 
 export const Navbar = () => {
 
@@ -80,6 +82,8 @@ export const Navbar = () => {
       <Route path="/player" component={Player} />
       <Route path="/edit-player" component={EditPlayer} />
       <Route path="/add-player" component={AddPlayer} />
+      <Route path="/add-team" component={AddTeam} />
+      <Route path="/edit-team" component={EditTeam} />
     </Router>
   );
 };

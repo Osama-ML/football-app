@@ -29,7 +29,7 @@ export const Player = (props) => {
 
   return (
     <div>
-      <h2>Player {player["Nombre del Jugador"]}</h2>
+      <h2>Player: {player["Nombre del Jugador"]}</h2>
       <img
         src={player["Avatar"]}
         width="250"

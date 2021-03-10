@@ -5,7 +5,7 @@ import api from "../api";
 
 export const EditPlayer = (props) => {
   const playerToEdit = (props.location && props.location.state) || {};
-  
+
   const history = useHistory();
 
   const [playerTeam, setPlayerTeam] = useState({});
@@ -50,7 +50,7 @@ export const EditPlayer = (props) => {
   return (
     <div>
       <h1>
-        Edit player "{player["Nombre del Jugador"]}"
+        Edit player: "{player["Nombre del Jugador"]}"
         <img
           src={player["Avatar"]}
           width="150"
@@ -89,8 +89,6 @@ export const EditPlayer = (props) => {
           onChange={(e) => setPlayer({ ...player, teamId: e.target.value })}
         >
           {allTeams.map((team) => {
-
-            if(playerTeam["id"] === "undefined") return(<option selected>Select the team</option>)
             if (team["id"] === playerTeam["id"]) {
               return (
                 <option value={team["id"]} selected>
