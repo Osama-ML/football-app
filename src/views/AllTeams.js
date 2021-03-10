@@ -14,6 +14,13 @@ export const AllTeams = () => {
     teamsArr();
   }, [setAllTeams]);
 
+  const handleDelete = async (id) => {
+    await api
+      .delete(`/teams/${id}`)
+      .then(() => setAllTeams(allTeams.filter((player) => player.id !== id)))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <h2>All teams ({allTeams.length})</h2>
@@ -47,7 +54,7 @@ export const AllTeams = () => {
               >
                 Edit
               </Link>
-              <button className="link_button">Delete</button>
+              <button className="link_button" onClick={() => {handleDelete(team["id"])}}>Delete</button>
             </li>
           );
         })}

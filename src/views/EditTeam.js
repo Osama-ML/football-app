@@ -40,7 +40,7 @@ export const EditTeam = (props) => {
         .put(`/teams/${newTeam["id"]}`, newTeam)
         .then(() => {
           console.log(newTeam);
-          history.push("/teams", newTeam);
+          history.push("/leagues", newTeam);
         })
         .catch((e) => console.log(e));
     }
