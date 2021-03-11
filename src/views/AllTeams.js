@@ -54,7 +54,14 @@ export const AllTeams = () => {
               >
                 Edit
               </Link>
-              <button className="link_button" onClick={() => {handleDelete(team["id"])}}>Delete</button>
+              <button
+                className="link_button"
+                onClick={() => {
+                  handleDelete(team["id"]);
+                }}
+              >
+                Delete
+              </button>
             </li>
           );
         })}

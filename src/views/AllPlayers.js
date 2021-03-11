@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
+import { Pagination } from "./Pagination";
 
 export const AllPlayers = () => {
   const [allPlayers, setAllPlayers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10)
 
   const playersArr = async () => {
     await api
@@ -25,6 +28,12 @@ export const AllPlayers = () => {
     playersArr();
   }, [setAllPlayers]);
 
+  const indexOfLastPost = currentPage*postsPerPage;
+  const indexOfFirstPost = indexOfLastPost-postsPerPage;
+  const currentPlayers = allPlayers.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <h2>All Players ({allPlayers.length})</h2>
@@ -33,7 +42,7 @@ export const AllPlayers = () => {
         New Player
       </Link>
       <ul>
-        {allPlayers.reverse().map((player) => {
+        {currentPlayers.reverse().map((player) => {
           return (
             <li key={player["id"]}>
               {player["Nombre del Jugador"]}
@@ -70,6 +79,7 @@ export const AllPlayers = () => {
           );
         })}
       </ul>
+      <Pagination postPerPage={postsPerPage} totalPosts={allPlayers.length} paginate={paginate}/>
     </div>
   );
 };

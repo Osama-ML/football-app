@@ -23,6 +23,15 @@ export const Players = (props) => {
     playersArr();
   }, [setPlayers]);
 
+  const handleDelete = async (id) => {
+    await api
+      .delete(`/players/${id}`)
+      .then(() =>
+        setPlayers(players.filter((player) => player.id !== id))
+      )
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <h2>
@@ -60,7 +69,14 @@ export const Players = (props) => {
               >
                 Edit
               </Link>
-              <button className="link_button">Delete</button>
+              <button
+                className="link_button"
+                onClick={() => {
+                  handleDelete(player["id"]);
+                }}
+              >
+                Delete
+              </button>
             </li>
           );
         })}

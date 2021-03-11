@@ -23,6 +23,13 @@ export const Teams = (props) => {
     teamsArr();
   }, [setTeams]);
 
+  const handleDelete = async (id) => {
+    await api
+      .delete(`/teams/${id}`)
+      .then(() => setTeams(teams.filter((player) => player.id !== id)))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <h2>
@@ -54,10 +61,20 @@ export const Teams = (props) => {
               >
                 Details
               </Link>
-              <button className="link_button" to="#">
+              <Link
+                className="link_button"
+                to={{ pathname: "/edit-team", state: team }}
+              >
                 Edit
+              </Link>
+              <button
+                className="link_button"
+                onClick={() => {
+                  handleDelete(team["id"]);
+                }}
+              >
+                Delete
               </button>
-              <button className="link_button">Delete</button>
             </li>
           );
         })}
