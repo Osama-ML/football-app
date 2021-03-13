@@ -37,8 +37,6 @@ Summary of tasks:
 <br>
 
 ## Built With 🤖
-<hr/>
-<br>
 
 - [React](https://reactjs.org/)
 
@@ -58,8 +56,6 @@ To get a local copy up and running follow these simple example steps.
 <br>
 
 ## Prerequisites ✅
-<hr/>
-<br>
 
 
 This is an example of how to list things you need to use the software and how to install them.
@@ -79,8 +75,6 @@ This is an example of how to list things you need to use the software and how to
   <br>
 
 ## Installation 👨🏼‍💻
-<hr/>
-<br>
 
 1. Clone the repo
 
@@ -103,8 +97,6 @@ This is an example of how to list things you need to use the software and how to
    <br>
 
 ## Run DEMO 🚀
-<hr/>
-<br>
 
 1. Run json-server (default port: 3000)
 
@@ -116,5 +108,6 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm start
    ```
+   <br>
 
 Please run json-server first and then the front server, this is cause of both (front && back) have the same default port (in this case, the default port is 3000). So when you run json-server first and then you try to run the front server, you gonna see this message in the prompt : "Would you like to run the app on another port instead? › (Y/n)" ... Press <b>y</b> to run front server in other port.
