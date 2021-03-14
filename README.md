@@ -14,7 +14,7 @@
       <ul>
         <li><a href="#prerequisites-">Prerequisites</a></li>
         <li><a href="#installation-">Installation</a></li>
-        <li><a href="#run-demo">Run DEMO</a></li>
+        <li><a href="#run-demo-">Run DEMO</a></li>
       </ul>
     </li>
   </ol>
